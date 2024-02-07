@@ -5,7 +5,7 @@ using UnityEngine;
 public class AiAgentSpawner : MonoBehaviour
 {
     [SerializeField] AIAgent[] agents;
-    public LayerMask layerMask;
+    [SerializeField] LayerMask layerMask;
 
     int index = 0;
 

@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+public class AIInspector : EditorWindow
+{
+    [MenuItem("AI/Inspector")]
+    static void ShowWindow()
+    {
+        GetWindow(typeof(AIInspector));
+    }
+
+    private void OnGUI()
+    {
+        GUILayout.Label("Actions", EditorStyles.boldLabel);
+
+        if(GUILayout.Button("View Agent"))
+        {
+            Camera camera = Camera.main;
+            GameObject go = Selection.activeGameObject;
+            if(go.TryGetComponent<AINavAgent>(out AINavAgent agent))
+            {
+                camera.transform.parent = agent.transform;
+                camera.transform.localPosition = Vector3.back * 5 + Vector3.up * 2;
+                camera.transform.rotation = Quaternion.identity;
+            }
+        }
+    }
+}

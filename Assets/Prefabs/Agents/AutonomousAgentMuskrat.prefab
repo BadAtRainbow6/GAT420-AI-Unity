@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5708208886096326232}
   - component: {fileID: 7214190941010737631}
   - component: {fileID: 5656888037049394964}
+  - component: {fileID: 7307753633420482171}
   - component: {fileID: 3875834424503003768}
   m_Layer: 0
   m_Name: AutonomousAgentMuskrat
@@ -49,10 +50,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df0460d9fda3d145ac097f96ec14b0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movement: {fileID: 5708208886096326232}
   seekPerception: {fileID: 0}
   fleePerception: {fileID: 7214190941010737631}
   flockPerception: {fileID: 5656888037049394964}
-  movement: {fileID: 5708208886096326232}
+  obstaclePerception: {fileID: 7307753633420482171}
 --- !u!114 &5708208886096326232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +86,9 @@ MonoBehaviour:
   tagName: snek
   distance: 5
   maxAngle: 360
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &5656888037049394964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,6 +104,29 @@ MonoBehaviour:
   tagName: muskrat
   distance: 5
   maxAngle: 360
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &7307753633420482171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54171579894206862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64993a8e367d1bf419870cdd959a7cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagName: 
+  distance: 5
+  maxAngle: 80
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  numRaycast: 10
+  radius: 0.5
 --- !u!135 &3875834424503003768
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -118,8 +146,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!1001 &6714062059785066320
 PrefabInstance:
   m_ObjectHideFlags: 0

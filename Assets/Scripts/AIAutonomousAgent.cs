@@ -7,6 +7,7 @@ public class AIAutonomousAgent : AIAgent
     public AIPerception seekPerception = null;
     public AIPerception fleePerception = null;
     public AIPerception flockPerception = null;
+    public AIPerception obstaclePerception = null;
 
     private void Update()
     {
@@ -41,6 +42,22 @@ public class AIAutonomousAgent : AIAgent
                 movement.ApplyForce(Alignment(gameObjects));
             }
         }
+
+        if(obstaclePerception != null)
+        {
+            if (((AISpherecastPerception)obstaclePerception).CheckDirection(Vector3.forward))
+            {
+                Vector3 open = Vector3.zero;
+                if(((AISpherecastPerception)obstaclePerception).GetOpenDirection(ref open))
+                {
+                    movement.ApplyForce(GetSteeringForce(open) * 10);
+                }
+            }
+        }
+
+        Vector3 acceleration = movement.Acceleration;
+        acceleration.y = 0;
+        movement.Acceleration = acceleration;
 
         transform.position = Utilities.Wrap(transform.position, new Vector3(-10, -10, -10), new Vector3(10, 10, 10));
     }
